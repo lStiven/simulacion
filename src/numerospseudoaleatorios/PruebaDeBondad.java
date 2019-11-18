@@ -155,17 +155,6 @@ public class PruebaDeBondad {
         return getNumeros().size();
     }
     
-    public void probarSeries(int cnt){
-        double num1, num2;
-        int fila, columna;
-        for (int i = 0; i < cnt; i ++) {
-            num1 = (double)numeros.elementAt(i);
-            num2 = (double)numeros.elementAt(i +1);
-            if(num1 >= 0 && num1 < 0.2){
-                
-            }
-        }
-    }
     /**
      * @return the numeros
      */
