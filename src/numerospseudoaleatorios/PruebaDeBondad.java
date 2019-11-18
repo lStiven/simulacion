@@ -50,7 +50,7 @@ public class PruebaDeBondad {
                                         } else if (num >= 0.8 && num < 0.9) {
                                                 tabla1[8][0] ++;tabla2[8][0] ++;
                                             } else {
-                                                tabla1[9][0] ++;tabla1[9][0] ++;
+                                                tabla1[9][0] ++;tabla2[9][0] ++;
                                             }
         }
         ChiCuadrado chi= new ChiCuadrado(tabla1, cnt);
