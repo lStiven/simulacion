@@ -5,13 +5,19 @@
 package numerospseudoaleatorios;
 
 
-/**
- * **********************************************************
- * Universidad del Valle * * Numeros pseudoaleatorios * GENERADOR DE ESTANDAR
- * MINIMO * * * Estudiantes Codigos * Luz Carime Lucumi Hernandez 1667564 *
- * Stiven Pinzón Triana 1667614 * *
- * **********************************************************
- */
+/************************************************************
+ *                 Universidad del Valle                    *
+ *                                                          *
+ *                Numeros pseudoaleatorios                  *
+ *              GENERADOR DE ESTANDAR MINIMO                *
+ *                                                          *
+ *                                                          *   
+ *        Estudiantes                       Codigos         *
+ * Luz Carime Lucumi Hernandez              1667564         *
+ * Stiven Pinzón Triana                     1667614         *
+ *                                                          *
+ ************************************************************/
+
 /**
  * @date 8/11/2019
  * @author Luz Carime Lucumi®
@@ -22,9 +28,6 @@ public class EstandarMinimo extends PruebaDeBondad{
     private double a, m, xi, q, r;
     private int periodo;
 
-    public EstandarMinimo(){
-        
-    }
     public EstandarMinimo(double a, double m, double xi) {
         this.a = a;
         this.m = m;
@@ -35,7 +38,7 @@ public class EstandarMinimo extends PruebaDeBondad{
 
     public void mostrarRecurrencias() {
         System.out.print("\n        VALORES DE RECURRENCIA       \n\n");
-        //Imprimir la semilla
+        //Imprimimos la semilla
         System.out.println("X(0) = " + xi);
         
         /**
@@ -60,7 +63,7 @@ public class EstandarMinimo extends PruebaDeBondad{
              * evaluar si la recurrencia generadas ya esta en el vector
              */
             if (getNumeros().contains(rn)) {
-                System.out.println("X(" + (i + 1) + ") = " + xi + " | Rn = " + rn);
+                System.out.println("X(" + (i + 1) + ") = " + xi + " \r Rn = " + rn);
                 break;
             }
             // Agregar recurrencia al vector
@@ -70,29 +73,9 @@ public class EstandarMinimo extends PruebaDeBondad{
         }
         System.out.println("Periodo: " + periodo);
     }
-
-    public double getA() {
-        return a;
-    }
-
-    public double getM() {
-        return m;
-    }
-
-    public double getXi() {
-        return xi;
-    }
-
-    public double getQ() {
-        return q;
-    }
-
-    public double getR() {
-        return r;
-    }
-
-    public int getPeriodo() {
+    
+    public int totalRecurrencias(){
         return periodo;
     }
- 
+    
 }

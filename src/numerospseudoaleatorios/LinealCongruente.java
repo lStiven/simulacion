@@ -4,6 +4,7 @@
  */
 package numerospseudoaleatorios;
 
+import java.util.Vector;
 
 /************************************************************
  *                 Universidad del Valle                    *
@@ -58,7 +59,7 @@ public class LinealCongruente extends PruebaDeBondad {
              * verificar que la recurrencia actual no se haya generado
              */
             if (getNumeros().contains(rn)) {
-                System.out.println("X(" + (i + 1) + ") = " + xi + " | Rn = " + rn);
+                System.out.println("X(" + (i + 1) + ") = " + xi + " \r Rn = " + rn);
                 break;
             }
             // Agregar recurrencia al vector
@@ -70,30 +71,12 @@ public class LinealCongruente extends PruebaDeBondad {
             periodo++;
         }
         System.out.println("Periodo: " + periodo);
-    }    
-
-    public double getA() {
-        return a;
     }
 
-    public double getC() {
-        return c;
-    }
-
-    public double getM() {
-        return m;
-    }
-
-    public double getXi() {
-        return xi;
-    }
-
-    public double getRn() {
-        return rn;
-    }
-
-    public int getPeriodo() {
+    // Retorna la cantidad de recurrencias generadas
+    public int totalRecurrencias() {
         return periodo;
     }
+    
     
 }

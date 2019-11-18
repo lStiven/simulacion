@@ -95,7 +95,6 @@ public class Main {
 
                     } while (cntPrueba > lc.totalRecurrencias());
                     lc.llenarFO(cntPrueba);
-                    lc.llenarTablaChi(cntPrueba);
 
                 } else {
                     do {
@@ -106,7 +105,6 @@ public class Main {
 
                     } while (cntPrueba > em.totalRecurrencias());
                     em.llenarFO(cntPrueba);
-                    em.llenarTablaChi(cntPrueba);
 
                 }
 

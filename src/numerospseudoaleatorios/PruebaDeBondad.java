@@ -1,5 +1,4 @@
-/*
- *
+/* *
  *
  */
 package numerospseudoaleatorios;
@@ -8,104 +7,124 @@ import java.util.Vector;
 
 /**
  * @date 14/11/2019
- * @author Luz Carime Lucumi®
  * @author Stiven®
  */
 public class PruebaDeBondad {
-
+    
     protected double xCal, num, gl, DMcal, DMcri;
     private Vector numeros = new Vector();
     protected double[][] tabla1 = new double[10][3];
     protected double[][] tabla2 = new double[10][5];
     protected double[][] serie1 = new double[5][5];
     protected double[][] serie2 = new double[5][5];
-
-    public PruebaDeBondad() {
-
-    }
-
+    
+    public PruebaDeBondad(){
+        
+    } 
+    
     public void llenarFO(double cnt) {
-
+            // Guarda el valor de cada objeto del vector
+        double num;  
         /**
          * Validaciones para verificar en que rango se ubica el valor de la
          * recurrencia
          */
         for (int i = 0; i < cnt; i ++) {
-            num = (double) getNumeros().elementAt(i);
+            num = (double) numeros.elementAt(i);
             if (num >= 0 && num < 0.1) {
-                tabla1[0][0] ++;
-                tabla2[0][0] ++;
-            } else {
-                if (num >= 0.1 && num < 0.2) {
-                    tabla1[1][0] ++;
-                    tabla2[1][0] ++;
-                } else {
-                    if (num >= 0.2 && num < 0.3) {
-                        tabla1[2][0] ++;
-                        tabla2[2][0] ++;
-                    } else {
-                        if (num >= 0.3 && num < 0.4) {
-                            tabla1[3][0] ++;
-                            tabla2[3][0] ++;
-                        } else {
-                            if (num >= 0.4 && num < 0.5) {
-                                tabla1[4][0] ++;
-                                tabla2[4][0] ++;
-                            } else {
-                                if (num >= 0.5 && num < 0.6) {
-                                    tabla1[5][0] ++;
-                                    tabla2[5][0] ++;
-                                } else {
-                                    if (num >= 0.6 && num < 0.7) {
-                                        tabla1[6][0] ++;
-                                        tabla2[6][0] ++;
-                                    } else {
-                                        if (num >= 0.7 && num < 0.8) {
-                                            tabla1[7][0] ++;
-                                            tabla2[7][0] ++;
-                                        } else {
-                                            if (num >= 0.8 && num < 0.9) {
-                                                tabla1[8][0] ++;
-                                                tabla2[8][0] ++;
+                tabla1[0][0] ++;tabla2[0][0] ++;
+            } else if (num >= 0.1 && num < 0.2) {
+                    tabla1[1][0] ++;tabla2[1][0] ++;
+                } else if (num >= 0.2 && num < 0.3) {
+                        tabla1[2][0] ++;tabla2[2][0] ++;
+                    } else if (num >= 0.3 && num < 0.4) {
+                            tabla1[3][0] ++;tabla2[3][0] ++;
+                        } else if (num >= 0.4 && num < 0.5) {
+                                tabla1[4][0] ++;tabla2[4][0] ++;
+                            } else if (num >= 0.5 && num < 0.6) {
+                                    tabla1[5][0] ++;tabla2[5][0] ++;
+                                } else if (num >= 0.6 && num < 0.7) {
+                                        tabla1[6][0] ++;tabla2[6][0] ++;
+                                    } else if (num >= 0.7 && num < 0.8) {
+                                            tabla1[7][0] ++;tabla2[7][0] ++;
+                                        } else if (num >= 0.8 && num < 0.9) {
+                                                tabla1[8][0] ++;tabla2[8][0] ++;
                                             } else {
-                                                tabla1[9][0] ++;
-                                                tabla2[9][0] ++;
+                                                tabla1[9][0] ++;tabla1[9][0] ++;
                                             }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+        }
+        ChiCuadrado chi= new ChiCuadrado(tabla1, cnt);
+        chi.setVisible(true);
+    }
+    
+    public void probarCorrida(int cnt){
+        double numero;
+        //Validan si se estuvo o no anteriormente en crecimiento o decrecimiento
+        boolean cantidadP= false, cantidadN=false;
+        //Conteo correspondiente a la cantidad de corridas positivas (mayor)
+        //y negativas (menor)
+        int mayor=0, menor=0;
+        for(int i=0;i<cnt; i++){
+                //Se valida si se terminó el recorrido de datos
+                if(i==(cnt-1)){
+                    break;
+                }
+                //Impresion de valores '-' o '+' segun corresponda
+                //Comparaciones para datos anteriores al último
+                if(i<cnt-1){
+                numero=(double)numeros.elementAt(i+1);
+                    if(numero<(double)numeros.elementAt(i)){
+                        System.out.print("- ");
+                    }
+                    else{
+                        System.out.print("+ ");
                     }
                 }
-            }
+                //comparación para dato final recorrido
+                else{
+                    numero=(double)numeros.elementAt(i);
+                        if(numero<(double)numeros.elementAt(i-1)){
+                            System.out.print("- ");
+                        }
+                        else{
+                            System.out.println("+ ");
+                        }
+                }
+                
+                /*CODIGO CORRESPONDIENTE A PRUEBA CORRIDAS*/
+                //Comparo las posiciones con la siguiente para saber
+                //existencia de corrida entre ellas (hasta la penúltima)
+                if(i<(cnt-1)){
+                    //Numero siguiente 
+                    numero=(double)numeros.elementAt(i+1);
+                    //comparamos si decrece y si el anterior no decreció
+                    if(numero<(double)numeros.elementAt(i) && cantidadN==false){
+                        cantidadN=true;
+                        cantidadP=false;
+                        menor++;
+                    }
+                    //comparamos si crece y si el anterior no creció
+                    else if(numero>(double) numeros.elementAt(i) && cantidadP==false){
+                        cantidadP=true;
+                        cantidadN=false;
+                        mayor++;
+                    }
+                }
+                else{
+                    //última posición 
+                    numero=(double)numeros.elementAt(i);
+                    //Comparamos si decrece respecto a la anterior
+                    if(numero<(double)numeros.elementAt(i-1) && cantidadN==false){
+                        menor++;
+                    }
+                    else{
+                        mayor++;
+                    }
+                }
         }
+        System.out.println("menor "+menor+" mayor "+mayor);
     }
-
-    public void llenarTablaChi(double cnt) {
-        /**
-         * llenado de la tabla1
-         */
-        for (int i = 0; i < 10; i ++) {
-
-            //llenar columna FE
-            tabla1[i][1] = cnt / (10);
-            // Chi Cuadrado por intervalo y X^2 calculado
-            tabla1[i][2] = Math.pow(tabla1[i][0] - tabla1[i][1], 2) / tabla1[i][1];
-        }
-
-        // Imprime la tabla1
-        for (int i = 0; i < 10; i ++) {
-            for (int j = 0; j < 3; j ++) {
-                System.out.print(tabla1[i][j] + " ");
-
-            }
-            System.out.println("");
-            xCal = xCal + tabla1[i][2];
-        }
-        System.out.println("Chi Cuadrado Calculado: " + xCal);
-    }
-
+    
     public void llenarTablaKolmogorov(double cnt) {
         /**
          * llenar el resto de la tabla
