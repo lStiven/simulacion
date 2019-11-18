@@ -4,7 +4,6 @@
  */
 package numerospseudoaleatorios;
 
-import java.util.Vector;
 
 /************************************************************
  *                 Universidad del Valle                    *
