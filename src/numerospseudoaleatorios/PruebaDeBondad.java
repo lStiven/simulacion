@@ -128,6 +128,12 @@ public class PruebaDeBondad {
         suma=menor+mayor;
         Corridas corridas= new Corridas(dato,suma);
         corridas.setVisible(true);
+        int totalCorridas = menor + mayor;
+        System.out.println("menor "+menor+" mayor "+mayor + "\nTotal Corridas: " + totalCorridas);
+        double media = (2*(1000) - 1)/3;
+        double varianza = Math.sqrt((16*1000)/90);
+        double z = (totalCorridas - media)/varianza;
+        System.out.println("Z = " + z);
     }
     
     public void llenarTablaKolmogorov(double cnt) {
@@ -173,6 +179,97 @@ public class PruebaDeBondad {
         }
 
         System.out.println("DMcalculado = " + DMcal);
+    }
+    
+    /**
+     * 
+     * @param rn: recurrencia
+     * @param k: nivel de significancia
+     * @return 
+     */
+    public boolean asegurarDiferentes(double rn, int k){
+        boolean diferentes = true;
+        String evaluar = Double.toString(rn);
+        /**
+         * verificar que se agreguen correctamente los numeros
+         */
+        if((k+2) > evaluar.length()){
+            evaluar = (String)evaluar.subSequence(2, evaluar.length());
+        }else{
+            evaluar = (String)evaluar.substring(2, (k+2));
+        }
+        /**
+         * crear un arreglo de char y verificar cada elemento con el arreglo
+         */
+        char[] buscar = evaluar.toCharArray();
+        for (int i = 0; i < evaluar.length(); i ++) {
+            char numero = buscar[i];
+            for(int j = (i+1); j < evaluar.length(); j++){
+                if(numero == buscar[j]){
+                    diferentes = false;
+                    break;
+                }
+            }
+        }
+        return diferentes;
+    }
+    
+    public boolean asegurarPar(double rn, int k){
+        boolean par = false;
+        String evaluar = Double.toString(rn);
+        /**
+         * verificar que se agreguen correctamente los numeros
+         */
+        if((k+2) > evaluar.length()){
+            evaluar = (String)evaluar.subSequence(2, evaluar.length());
+        }else{
+            evaluar = (String)evaluar.substring(2, (k+2));
+        }
+        char[] buscar = evaluar.toCharArray();
+        /**
+         * si encuentra cualquier numero repetido, retorna true
+         */
+        for (int i = 0; i < evaluar.length(); i ++) {
+            char numero = buscar[i];
+            for(int j = (i+1); j < evaluar.length(); j++){
+                if(numero == buscar[j]){
+                    par = true;
+                    break;
+                }
+            }
+        }
+        return par;
+    }
+    
+    public boolean asegurarTrio(double rn, int k){
+        boolean trio = false;
+        String evaluar = Double.toString(rn);
+        /**
+         * verificar que se agreguen correctamente los numeros
+         */
+        if((k+2) > evaluar.length()){
+            evaluar = (String)evaluar.subSequence(2, evaluar.length());
+        }else{
+            evaluar = (String)evaluar.substring(2, (k+2));
+        }
+        /**
+         * crear un arreglo de char y verificar cada elemento con el arreglo
+         */
+        int cont = 1;
+        char[] buscar = evaluar.toCharArray();
+        for (int i = 0; i < evaluar.length(); i ++) {
+            char numero = buscar[i];
+            for(int j = (i+1); j < evaluar.length(); j++){
+                if(numero == buscar[j]){
+                    cont++;
+                }
+                if(cont == 3){
+                    trio = true;
+                    break;
+                }
+            }
+        }
+        return trio;
     }
     
     public int totalRecurrencias() {
