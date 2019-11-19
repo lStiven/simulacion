@@ -140,7 +140,7 @@ public class Main {
                 }
             }
         } while (e2 < 1 || e2 > 2);
-
+        
     }
 
 }
