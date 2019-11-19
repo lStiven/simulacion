@@ -14,9 +14,12 @@ public class Corridas extends javax.swing.JFrame {
     /**
      * Creates new form Corridas
      */
-    public Corridas(String signo, int cantidad) {
+    public Corridas(String signo, int cantidad,double mediaC, double varianzaC, double zC) {
         initComponents();
         totalcorridas.setText(""+cantidad);
+        media.setText(""+ mediaC);
+        varianza.setText(""+ varianzaC);
+        z.setText(""+ zC);
         jTextAreaCorrida.append(signo);
     }
 
@@ -56,7 +59,7 @@ public class Corridas extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 440, 200));
 
-        label1.setFont(new java.awt.Font("Gulim", 1, 24)); // NOI18N
+        label1.setFont(new java.awt.Font("Microsoft Tai Le", 1, 24)); // NOI18N
         label1.setText("CORRIDAS");
         getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 140, 28));
 
@@ -67,7 +70,7 @@ public class Corridas extends javax.swing.JFrame {
         label3.setEnabled(false);
         label3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label3.setText("Zabs");
-        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
+        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, -1, -1));
 
         totalcorridas.setEnabled(false);
         totalcorridas.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -75,17 +78,17 @@ public class Corridas extends javax.swing.JFrame {
 
         z.setEnabled(false);
         z.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        getContentPane().add(z, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 40, -1));
+        getContentPane().add(z, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 60, -1));
 
         label8.setEnabled(false);
         label8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label8.setForeground(new java.awt.Color(51, 51, 51));
         label8.setText("Media");
-        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, -1, -1));
+        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         varianza.setEnabled(false);
         varianza.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        getContentPane().add(varianza, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 40, -1));
+        getContentPane().add(varianza, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 70, -1));
 
         label11.setEnabled(false);
         label11.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -99,7 +102,7 @@ public class Corridas extends javax.swing.JFrame {
 
         media.setEnabled(false);
         media.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        getContentPane().add(media, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 40, -1));
+        getContentPane().add(media, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 70, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -79,6 +79,7 @@ public class ChiCuadrado extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
+        label6 = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblChi = new javax.swing.JTable();
@@ -111,10 +112,12 @@ public class ChiCuadrado extends javax.swing.JFrame {
 
         label2.setText("label2");
 
+        label6.setBackground(new java.awt.Color(0, 153, 153));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setMinimumSize(new java.awt.Dimension(600, 500));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         tblChi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,70 +133,82 @@ public class ChiCuadrado extends javax.swing.JFrame {
         tblChi.setEnabled(false);
         jScrollPane2.setViewportView(tblChi);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 550, 210));
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 70, 550, 210);
 
         label3.setEnabled(false);
         label3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label3.setText("Grados de libertad (gl)");
-        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, 20));
+        getContentPane().add(label3);
+        label3.setBounds(370, 310, 196, 20);
         label3.getAccessibleContext().setAccessibleDescription("");
 
         label4.setEnabled(false);
         label4.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
         label4.setText("PRUEBA X²");
-        getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+        getContentPane().add(label4);
+        label4.setBounds(190, 10, 192, 51);
 
         label5.setEnabled(false);
         label5.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label5.setText("9");
-        getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
+        getContentPane().add(label5);
+        label5.setBounds(480, 330, 14, 28);
 
         labelCumple.setEnabled(false);
         labelCumple.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         labelCumple.setText("X² calc >  X² crit");
         labelCumple.setVisible(false);
-        getContentPane().add(labelCumple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
+        getContentPane().add(labelCumple);
+        labelCumple.setBounds(230, 380, 141, 28);
         labelCumple.getAccessibleContext().setAccessibleName("");
 
         label7.setEnabled(false);
         label7.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label7.setText("16,92");
-        getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
+        getContentPane().add(label7);
+        label7.setBounds(270, 330, 49, 28);
 
         label8.setEnabled(false);
         label8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label8.setForeground(new java.awt.Color(51, 51, 51));
         label8.setText("Nivel de confianza (a) ");
-        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 20));
+        getContentPane().add(label8);
+        label8.setBounds(10, 310, 196, 20);
 
         label9.setEnabled(false);
         label9.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label9.setText("0,05");
-        getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        getContentPane().add(label9);
+        label9.setBounds(70, 330, 39, 28);
 
         labelCumple1.setEnabled(false);
         labelCumple1.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
         labelCumple1.setText("No se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple1.setVisible(false);
-        getContentPane().add(labelCumple1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
+        getContentPane().add(labelCumple1);
+        labelCumple1.setBounds(110, 410, 418, 24);
         labelCumple1.getAccessibleContext().setAccessibleName("");
 
         label11.setEnabled(false);
         label11.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label11.setText("X² crit ");
-        getContentPane().add(label11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 40, 20));
+        getContentPane().add(label11);
+        label11.setBounds(270, 310, 40, 20);
 
         labelCumple2.setEnabled(false);
         labelCumple2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         labelCumple2.setText("X² calc <=  X² crit");
         labelCumple2.setVisible(false);
-        getContentPane().add(labelCumple2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
+        getContentPane().add(labelCumple2);
+        labelCumple2.setBounds(220, 380, 154, 28);
 
         labelCumple3.setEnabled(false);
         labelCumple3.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
         labelCumple3.setText("Se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple3.setVisible(false);
-        getContentPane().add(labelCumple3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
+        getContentPane().add(labelCumple3);
+        labelCumple3.setBounds(110, 410, 397, 24);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -245,6 +260,7 @@ public class ChiCuadrado extends javax.swing.JFrame {
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
+    private java.awt.Label label6;
     private java.awt.Label label7;
     private java.awt.Label label8;
     private java.awt.Label label9;

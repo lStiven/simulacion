@@ -163,7 +163,7 @@ public class Kolmogorov extends javax.swing.JFrame {
         label4.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
         label4.setText("PRUEBA KOLMOGOROV");
         getContentPane().add(label4);
-        label4.setBounds(50, 10, 410, 51);
+        label4.setBounds(60, 10, 410, 51);
 
         label5.setEnabled(false);
         label5.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N

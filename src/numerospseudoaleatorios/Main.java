@@ -95,6 +95,7 @@ public class Main {
 
                     } while (cntPrueba > lc.totalRecurrencias());
                     lc.llenarFO(cntPrueba);
+                    lc.probarCorrida((int) cntPrueba);
                 } else {
                     do {
                         System.out.println("\nDigite la cantidad de datos para la prueba,"

@@ -72,15 +72,18 @@ public class PruebaDeBondad {
                 if(i==(cnt-1)){
                     break;
                 }
+                if(i%40==0){
+                    dato+="\n";
+                }
                 //Impresion de valores '-' o '+' segun corresponda
                 //Comparaciones para datos anteriores al último
                 if(i<cnt-1){
                     numero=(double)numeros.elementAt(i+1);
                     if(numero<(double)numeros.elementAt(i)){
-                        dato+="- ";
+                        dato+="-  ";
                     }
                     else{
-                        dato+="+ ";
+                        dato+="+  ";
                     }
                 }
                 //comparación para dato final recorrido
@@ -125,15 +128,13 @@ public class PruebaDeBondad {
                     }
                 }
         }
-        suma=menor+mayor;
-        Corridas corridas= new Corridas(dato,suma);
-        corridas.setVisible(true);
         int totalCorridas = menor + mayor;
-        System.out.println("menor "+menor+" mayor "+mayor + "\nTotal Corridas: " + totalCorridas);
         double media = (2*(1000) - 1)/3;
         double varianza = Math.sqrt((16*1000)/90);
         double z = (totalCorridas - media)/varianza;
-        System.out.println("Z = " + z);
+        
+        Corridas corridas= new Corridas(dato,totalCorridas,media,varianza,z);
+        corridas.setVisible(true);
     }
     
     public void llenarTablaKolmogorov(double cnt) {
