@@ -77,6 +77,7 @@ public class LinealCongruente extends PruebaDeBondad {
     }
 
     // Retorna la cantidad de recurrencias generadas
+    @Override
     public int totalRecurrencias() {
         return periodo;
     }

@@ -28,6 +28,10 @@ public class EstandarMinimo extends PruebaDeBondad{
     private double a, m, xi, q, r;
     private int periodo;
     String em="";
+    
+    public EstandarMinimo(){
+        
+    }
 
     public EstandarMinimo(double a, double m, double xi) {
         this.a = a;
@@ -77,6 +81,7 @@ public class EstandarMinimo extends PruebaDeBondad{
         generadores.setVisible(true);
     }
     
+    @Override
     public int totalRecurrencias(){
         return periodo;
     }

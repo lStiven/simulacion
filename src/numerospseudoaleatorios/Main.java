@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * @date 12/11/2019
+ * @author Luz Carime Lucumi®
  * @author Stiven®
  */
 public class Main {
@@ -140,6 +141,8 @@ public class Main {
                 }
             }
         } while (e2 < 1 || e2 > 2);
+        
+        lc.probarIndependenciaPoker(6000, 5);
         
     }
 
