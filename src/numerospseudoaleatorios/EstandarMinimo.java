@@ -27,6 +27,7 @@ public class EstandarMinimo extends PruebaDeBondad{
 
     private double a, m, xi, q, r;
     private int periodo;
+    String em="";
 
     public EstandarMinimo(double a, double m, double xi) {
         this.a = a;
@@ -37,9 +38,9 @@ public class EstandarMinimo extends PruebaDeBondad{
     }
 
     public void mostrarRecurrencias() {
-        System.out.print("\n        VALORES DE RECURRENCIA       \n\n");
+        em+="\n        VALORES DE RECURRENCIA       \n\n";
         //Imprimimos la semilla
-        System.out.println("X(0) = " + xi);
+        em+="X(0) = " + xi+"\n";
         
         /**
          * Generar numeros
@@ -57,21 +58,23 @@ public class EstandarMinimo extends PruebaDeBondad{
                     xi = (a * aux) % m;
                 }
             }
-            // generar rn
+            //Generar rn
             rn = xi / m;
             /**
              * evaluar si la recurrencia generadas ya esta en el vector
              */
             if (getNumeros().contains(rn)) {
-                System.out.println("X(" + (i + 1) + ") = " + xi + " \r Rn = " + rn);
+                em+="X(" + (i + 1) + ") = " + xi + " \r Rn = " + rn+"\n";
                 break;
             }
             // Agregar recurrencia al vector
             getNumeros().add(rn); 
-            System.out.println("X(" + (i + 1) + ") = " + xi + " | Rn = " + rn);
+                em+="X(" + (i + 1) + ") = " + xi + " | Rn = " + rn+"\n";
             periodo++;
         }
-        System.out.println("Periodo: " + periodo);
+        em+="Periodo: " + periodo+"\n";
+        Generadores generadores= new Generadores(em,false);
+        generadores.setVisible(true);
     }
     
     public int totalRecurrencias(){

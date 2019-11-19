@@ -21,19 +21,17 @@ public class Kolmogorov extends javax.swing.JFrame {
         
         initComponents();
         
-        PruebaDeBondad prueba= new PruebaDeBondad();
         String titulo[]={"Rango Inferior", "Rango superior","FO","FOA","POA","PEA","|PEA-POA|"};
         String informacion[][]={};
-        
-        
         modelo= new DefaultTableModel(informacion, titulo);
         tblKol.setModel(modelo);
         
-        double intervalo= 0,contador=0,FO,FOA,POA,PEA,total,DMcalc=0;
+        double intervalo= 0,FO,FOA,POA,PEA,total,DMcalc=0;
         
-        //Se llena 
+        //Se llena la tabla
         for (int i = 0; i < 11; i++) {
             if(i<10){
+                //Colocamos los valores correspondientes a la primer fila de la tabla
                 if(i==0){
                     FO=tabla[0][0];
                     FOA=tabla[0][0];
@@ -45,6 +43,7 @@ public class Kolmogorov extends javax.swing.JFrame {
                     modelo.addRow(informacion2);
                     tblKol.setModel(modelo);
                 }
+                //Calculamos los valores correspondientes a las filas siguientes
                 else {
                     FO=tabla[i][0];
                     FOA=FO+(double)tblKol.getValueAt(i-1, 3);
@@ -56,14 +55,19 @@ public class Kolmogorov extends javax.swing.JFrame {
                     modelo.addRow(informacion2);
                     tblKol.setModel(modelo);
                 }
+                //Comparamos para obtener el mayor valor de los resultantes en la última
+                //columna (el valor DMcalc)
                 if(DMcalc<total){
                     DMcalc=total;
                 }
             }
             else{
+                //Colocamos en la tabla el valor correspondiente a DMcalc
                 Object informacion2[]={"","","","","","DMcalc",String.format("%.3f", DMcalc)};
                 modelo.addRow(informacion2);
                 tblKol.setModel(modelo);
+                //Se valida si cumple o no con las condiciones para la hipótesis
+                //referente a datos con la distribucion U(0,1)
                 if(DMcalc<=0.043){
                     labelCumple.setVisible(true);
                     labelCumple1.setVisible(true);
@@ -112,6 +116,7 @@ public class Kolmogorov extends javax.swing.JFrame {
         label11 = new java.awt.Label();
         labelCumple2 = new java.awt.Label();
         labelCumple3 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,6 +138,7 @@ public class Kolmogorov extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setMinimumSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(740, 490));
         getContentPane().setLayout(null);
 
         tblKol.setModel(new javax.swing.table.DefaultTableModel(
@@ -150,69 +156,69 @@ public class Kolmogorov extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblKol);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 70, 550, 210);
+        jScrollPane2.setBounds(30, 80, 550, 210);
 
-        label3.setEnabled(false);
+        label3.setBackground(new java.awt.Color(255, 255, 255));
         label3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label3.setText("Grados de libertad (gl)");
         getContentPane().add(label3);
-        label3.setBounds(370, 310, 196, 20);
+        label3.setBounds(410, 310, 196, 20);
         label3.getAccessibleContext().setAccessibleDescription("");
 
-        label4.setEnabled(false);
+        label4.setBackground(new java.awt.Color(255, 255, 255));
         label4.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
         label4.setText("PRUEBA KOLMOGOROV");
         getContentPane().add(label4);
-        label4.setBounds(60, 10, 410, 51);
+        label4.setBounds(150, 10, 440, 51);
 
-        label5.setEnabled(false);
+        label5.setBackground(new java.awt.Color(255, 255, 255));
         label5.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label5.setText("999");
         getContentPane().add(label5);
         label5.setBounds(480, 330, 34, 28);
 
-        labelCumple.setEnabled(false);
+        labelCumple.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         labelCumple.setText("DMcalc <=  DMcrit");
         labelCumple.setVisible(false);
         getContentPane().add(labelCumple);
-        labelCumple.setBounds(170, 380, 166, 28);
+        labelCumple.setBounds(180, 380, 170, 28);
         labelCumple.getAccessibleContext().setAccessibleName("");
 
-        label7.setEnabled(false);
+        label7.setBackground(new java.awt.Color(255, 255, 255));
         label7.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label7.setText("0.043");
         getContentPane().add(label7);
         label7.setBounds(270, 330, 49, 28);
 
-        label8.setEnabled(false);
+        label8.setBackground(new java.awt.Color(255, 255, 255));
         label8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label8.setForeground(new java.awt.Color(51, 51, 51));
         label8.setText("Nivel de confianza (a) ");
         getContentPane().add(label8);
         label8.setBounds(10, 310, 196, 20);
 
-        label9.setEnabled(false);
+        label9.setBackground(new java.awt.Color(255, 255, 255));
         label9.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label9.setText("0,05");
         getContentPane().add(label9);
         label9.setBounds(70, 330, 39, 28);
 
-        labelCumple1.setEnabled(false);
+        labelCumple1.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple1.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
         labelCumple1.setText("Se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple1.setVisible(false);
         getContentPane().add(labelCumple1);
-        labelCumple1.setBounds(50, 410, 397, 24);
+        labelCumple1.setBounds(50, 410, 400, 24);
         labelCumple1.getAccessibleContext().setAccessibleName("");
 
-        label11.setEnabled(false);
+        label11.setBackground(new java.awt.Color(255, 255, 255));
         label11.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label11.setText("DM crit ");
         getContentPane().add(label11);
         label11.setBounds(260, 310, 70, 20);
 
-        labelCumple2.setEnabled(false);
+        labelCumple2.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         labelCumple2.setText("DMcalc >  DMcrit");
         labelCumple2.setVisible(false);
@@ -220,12 +226,17 @@ public class Kolmogorov extends javax.swing.JFrame {
         labelCumple2.setBounds(180, 380, 166, 28);
         labelCumple2.getAccessibleContext().setAccessibleDescription("");
 
-        labelCumple3.setEnabled(false);
+        labelCumple3.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple3.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
         labelCumple3.setText("NO se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple3.setVisible(false);
         getContentPane().add(labelCumple3);
-        labelCumple3.setBounds(30, 410, 421, 24);
+        labelCumple3.setBounds(30, 410, 430, 24);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Kolmogorov.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 730, 490);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -269,6 +280,7 @@ public class Kolmogorov extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

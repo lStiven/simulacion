@@ -23,7 +23,7 @@ public class PruebaDeBondad {
     } 
     
     public void llenarFO(double cnt) {
-            // Guarda el valor de cada objeto del vector
+        // Guarda el valor de cada objeto del vector
         double num;  
         /**
          * Validaciones para verificar en que rango se ubica el valor de la
@@ -74,6 +74,9 @@ public class PruebaDeBondad {
                 }
                 if(i%40==0){
                     dato+="\n";
+                }
+                if(i==0){
+                    dato+="* ";
                 }
                 //Impresion de valores '-' o '+' segun corresponda
                 //Comparaciones para datos anteriores al último
@@ -133,7 +136,7 @@ public class PruebaDeBondad {
         double varianza = Math.sqrt((16*1000)/90);
         double z = (totalCorridas - media)/varianza;
         
-        Corridas corridas= new Corridas(dato,totalCorridas,media,varianza,z);
+        Corrida corridas= new Corrida(dato,totalCorridas,media,varianza,z);
         corridas.setVisible(true);
     }
     

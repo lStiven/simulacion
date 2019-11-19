@@ -21,7 +21,6 @@ public class ChiCuadrado extends javax.swing.JFrame {
         
         initComponents();
         
-        PruebaDeBondad prueba= new PruebaDeBondad();
         String cabecera[]={"Rango Inferior", "Rango superior","FO","FE","(FE-FO)²/FE"};
         String datos[][]={};
         
@@ -30,22 +29,31 @@ public class ChiCuadrado extends javax.swing.JFrame {
         tblChi.setModel(modelo);
         
         double intervalo= 0,contador=0,FO,FE,Chi;
-        //Muestro los rangos
+        //Se llena la tabla tblChi
         for (int i = 0; i < 11; i++) {
+            //Se muestran en la tabla los valores de cada cálculo según corresponda
             if(i<10){
+                //Obtenemos el valor de FO de la clase PruebaDeBondad
                 FO=tabla[i][0];
                 FE=cantidad/10;
                 Chi=Math.pow((FO-FE),2)/FE;
+                //contador, lleva la suma de los valores de la última columna
                 contador+=Chi;
+                //Se agregan tanto intérvalos como valores calculados a cada fila
                 Object datos2[]={String.format("%.1f", intervalo),String.format("%.1f", intervalo+0.1),FO,FE,Chi};
+                //se aumenta en 0.1 el intervalo siguiente
                 intervalo=intervalo+0.1;
                 modelo.addRow(datos2);
                 tblChi.setModel(modelo);
             }
             else{
+                //Se muestra en la tabla el valor correspondiente a la suma de los valores
+                //de la última columna
                 Object datos2[]={"","","","Σ(FE-FO)²/FE",contador};
                 modelo.addRow(datos2);
                 tblChi.setModel(modelo);
+                //Se valida si cumple o no con las condiciones para la hipótesis
+                //referente a datos con la distribucion U(0,1)
                 if(contador<=16.92){
                     labelCumple2.setVisible(true);
                     labelCumple3.setVisible(true);
@@ -83,8 +91,8 @@ public class ChiCuadrado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblChi = new javax.swing.JTable();
-        label3 = new java.awt.Label();
         label4 = new java.awt.Label();
+        label3 = new java.awt.Label();
         label5 = new java.awt.Label();
         labelCumple = new java.awt.Label();
         label7 = new java.awt.Label();
@@ -94,6 +102,7 @@ public class ChiCuadrado extends javax.swing.JFrame {
         label11 = new java.awt.Label();
         labelCumple2 = new java.awt.Label();
         labelCumple3 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,12 +121,10 @@ public class ChiCuadrado extends javax.swing.JFrame {
 
         label2.setText("label2");
 
-        label6.setBackground(new java.awt.Color(0, 153, 153));
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setMinimumSize(new java.awt.Dimension(600, 500));
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblChi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,82 +140,73 @@ public class ChiCuadrado extends javax.swing.JFrame {
         tblChi.setEnabled(false);
         jScrollPane2.setViewportView(tblChi);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 70, 550, 210);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 550, 210));
 
-        label3.setEnabled(false);
-        label3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        label3.setText("Grados de libertad (gl)");
-        getContentPane().add(label3);
-        label3.setBounds(370, 310, 196, 20);
-        label3.getAccessibleContext().setAccessibleDescription("");
-
-        label4.setEnabled(false);
+        label4.setBackground(new java.awt.Color(255, 255, 255));
         label4.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
         label4.setText("PRUEBA X²");
-        getContentPane().add(label4);
-        label4.setBounds(190, 10, 192, 51);
+        getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 50));
 
-        label5.setEnabled(false);
+        label3.setBackground(new java.awt.Color(255, 255, 255));
+        label3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        label3.setText("Grados de libertad (gl)");
+        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, 20));
+        label3.getAccessibleContext().setAccessibleDescription("");
+
+        label5.setBackground(new java.awt.Color(255, 255, 255));
         label5.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label5.setText("9");
-        getContentPane().add(label5);
-        label5.setBounds(480, 330, 14, 28);
+        getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
 
-        labelCumple.setEnabled(false);
+        labelCumple.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         labelCumple.setText("X² calc >  X² crit");
         labelCumple.setVisible(false);
-        getContentPane().add(labelCumple);
-        labelCumple.setBounds(230, 380, 141, 28);
+        getContentPane().add(labelCumple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 150, -1));
         labelCumple.getAccessibleContext().setAccessibleName("");
 
-        label7.setEnabled(false);
+        label7.setBackground(new java.awt.Color(255, 255, 255));
         label7.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label7.setText("16,92");
-        getContentPane().add(label7);
-        label7.setBounds(270, 330, 49, 28);
+        getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
-        label8.setEnabled(false);
+        label8.setBackground(new java.awt.Color(255, 255, 255));
         label8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label8.setForeground(new java.awt.Color(51, 51, 51));
         label8.setText("Nivel de confianza (a) ");
-        getContentPane().add(label8);
-        label8.setBounds(10, 310, 196, 20);
+        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 20));
 
-        label9.setEnabled(false);
+        label9.setBackground(new java.awt.Color(255, 255, 255));
         label9.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label9.setText("0,05");
-        getContentPane().add(label9);
-        label9.setBounds(70, 330, 39, 28);
+        getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
 
-        labelCumple1.setEnabled(false);
+        labelCumple1.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple1.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
         labelCumple1.setText("No se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple1.setVisible(false);
-        getContentPane().add(labelCumple1);
-        labelCumple1.setBounds(110, 410, 418, 24);
+        getContentPane().add(labelCumple1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 420, -1));
         labelCumple1.getAccessibleContext().setAccessibleName("");
 
-        label11.setEnabled(false);
+        label11.setBackground(new java.awt.Color(255, 255, 255));
         label11.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label11.setText("X² crit ");
-        getContentPane().add(label11);
-        label11.setBounds(270, 310, 40, 20);
+        getContentPane().add(label11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 60, 20));
 
-        labelCumple2.setEnabled(false);
+        labelCumple2.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         labelCumple2.setText("X² calc <=  X² crit");
         labelCumple2.setVisible(false);
-        getContentPane().add(labelCumple2);
-        labelCumple2.setBounds(220, 380, 154, 28);
+        getContentPane().add(labelCumple2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 160, -1));
 
-        labelCumple3.setEnabled(false);
+        labelCumple3.setBackground(new java.awt.Color(255, 255, 255));
         labelCumple3.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
         labelCumple3.setText("Se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple3.setVisible(false);
-        getContentPane().add(labelCumple3);
-        labelCumple3.setBounds(110, 410, 397, 24);
+        getContentPane().add(labelCumple3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 400, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ChiCuadrado.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -250,6 +248,7 @@ public class ChiCuadrado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -27,6 +27,7 @@ public class LinealCongruente extends PruebaDeBondad {
 
     private double a, c, m, xi, rn;
     private int periodo;
+    String lc="";
 
     public LinealCongruente() {
     }
@@ -41,9 +42,9 @@ public class LinealCongruente extends PruebaDeBondad {
     }
 
     public void mostrarRecurrencia() {
-        System.out.print("\n        VALORES DE RECURRENCIA       \n\n");
+        lc+="\n        VALORES DE RECURRENCIA       \n\n";
         //Imprimimir la semilla
-        System.out.println("X(0) = " + xi);
+        lc+="X(0) = " + xi+"\n";
 
         //For encargado de mostrar las recurrencias
         for (int i = 0; i < m; i ++) {
@@ -59,7 +60,7 @@ public class LinealCongruente extends PruebaDeBondad {
              * verificar que la recurrencia actual no se haya generado
              */
             if (getNumeros().contains(rn)) {
-                System.out.println("X(" + (i + 1) + ") = " + xi + " \r Rn = " + rn);
+                lc+="X(" + (i + 1) + ") = " + xi + " \r Rn = " + rn+"\n";
                 break;
             }
             // Agregar recurrencia al vector
@@ -67,10 +68,12 @@ public class LinealCongruente extends PruebaDeBondad {
             //formula alterna
             //xi = (a + (c * xi)) % m;
             
-            System.out.println("X(" + (i + 1) + ") = " + xi + " | Rn = " + rn);
+            lc+="X(" + (i + 1) + ") = " + xi + " | Rn = " + rn+"\n";
             periodo++;
         }
-        System.out.println("Periodo: " + periodo);
+        lc+="Periodo: " + periodo+"\n";
+        Generadores generadores= new Generadores(lc,true);
+        generadores.setVisible(true);
     }
 
     // Retorna la cantidad de recurrencias generadas
