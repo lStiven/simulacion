@@ -137,9 +137,6 @@ public class PruebaDeBondad {
             if (i % 40 == 0) {
                 dato += "\n";
             }
-            if (i == 0) {
-                dato += "* ";
-            }
             //Impresion de valores '-' o '+' segun corresponda
             //Comparaciones para datos anteriores al último
             if (i < cnt - 1) {
@@ -157,24 +154,19 @@ public class PruebaDeBondad {
                 } else {
                     System.out.println("+ ");
                 }
-            }
-
-            /*CODIGO CORRESPONDIENTE A PRUEBA CORRIDAS*/
-            //Comparo las posiciones con la siguiente para saber
-            //existencia de corrida entre ellas (hasta la penúltima)
-            if (i < (cnt - 1)) {
-                //Numero siguiente 
-                numero = (double) numeros.elementAt(i + 1);
-                //comparamos si decrece y si el anterior no decreció
-                if (numero < (double) numeros.elementAt(i) && cantidadN == false) {
-                    cantidadN = true;
-                    cantidadP = false;
-                    menor ++;
-                } //comparamos si crece y si el anterior no creció
-                else if (numero > (double) numeros.elementAt(i) && cantidadP == false) {
-                    cantidadP = true;
-                    cantidadN = false;
-                    mayor ++;
+                if(i==0){
+                    dato+="* ";
+                }
+                //Impresion de valores '-' o '+' segun corresponda
+                //Comparaciones para datos anteriores al último
+                if(i<cnt-1){
+                    numero=(double)numeros.elementAt(i+1);
+                    if(numero<(double)numeros.elementAt(i)){
+                        dato+="-  ";
+                    }
+                    else{
+                        dato+="+  ";
+                    }
                 }
             } else {
                 //última posición 
@@ -192,7 +184,7 @@ public class PruebaDeBondad {
         double varianza = Math.sqrt((16 * 1000) / 90);
         double z = (totalCorridas - media) / varianza;
 
-        Corrida corridas = new Corrida(dato, totalCorridas, media, varianza, z);
+        Corridas corridas = new Corridas(dato, totalCorridas, media, varianza, z);
         corridas.setVisible(true);
     }
 
@@ -282,7 +274,7 @@ public class PruebaDeBondad {
         System.out.println("Dos Pares: " + dosPares);
         System.out.println("Diferentes: " + diferentes);
         System.out.println("Par: " + par);
-
+        
     }
 
     /**
