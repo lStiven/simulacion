@@ -11,58 +11,77 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author miime_000
  */
-public class ChiCuadrado extends javax.swing.JFrame {
+public class Kolmogorov extends javax.swing.JFrame {
     /**
      * Creates new form ChiCuadrado
      */
     DefaultTableModel modelo;
     
-    public ChiCuadrado(double[][] tabla, double cantidad) {
+    public Kolmogorov(double[][] tabla, double cantidad) {
         
         initComponents();
         
         PruebaDeBondad prueba= new PruebaDeBondad();
-        String cabecera[]={"Rango Inferior", "Rango superior","FO","FE","(FE-FO)²/FE"};
-        String datos[][]={};
+        String titulo[]={"Rango Inferior", "Rango superior","FO","FOA","POA","PEA","|PEA-POA|"};
+        String informacion[][]={};
         
         
-        modelo= new DefaultTableModel(datos, cabecera);
-        tblChi.setModel(modelo);
+        modelo= new DefaultTableModel(informacion, titulo);
+        tblKol.setModel(modelo);
         
-        double intervalo= 0,contador=0,FO,FE,Chi;
-        //Muestro los rangos
+        double intervalo= 0,contador=0,FO,FOA,POA,PEA,total,DMcalc=0;
+        
+        //Se llena 
         for (int i = 0; i < 11; i++) {
             if(i<10){
-                FO=tabla[i][0];
-                FE=cantidad/10;
-                Chi=Math.pow((FO-FE),2)/FE;
-                contador+=Chi;
-                Object datos2[]={String.format("%.1f", intervalo),String.format("%.1f", intervalo+0.1),FO,FE,Chi};
-                intervalo=intervalo+0.1;
-                modelo.addRow(datos2);
-                tblChi.setModel(modelo);
+                if(i==0){
+                    FO=tabla[0][0];
+                    FOA=tabla[0][0];
+                    POA=(double)FOA/cantidad;
+                    PEA=intervalo+0.1;
+                    total=Math.abs(PEA-POA);
+                    Object informacion2[]={String.format("%.1f", intervalo),String.format("%.1f", intervalo+0.1),FO,FOA,POA,String.format("%.1f", PEA),String.format("%.3f", total)};
+                    intervalo=intervalo+0.1;
+                    modelo.addRow(informacion2);
+                    tblKol.setModel(modelo);
+                }
+                else {
+                    FO=tabla[i][0];
+                    FOA=FO+(double)tblKol.getValueAt(i-1, 3);
+                    POA=(double)FOA/cantidad;
+                    PEA=intervalo+0.1;
+                    total=Math.abs(PEA-POA);
+                    Object informacion2[]={String.format("%.1f", intervalo),String.format("%.1f", intervalo+0.1),FO,FOA,POA,String.format("%.1f", PEA),String.format("%.3f", total)};
+                    intervalo=intervalo+0.1;
+                    modelo.addRow(informacion2);
+                    tblKol.setModel(modelo);
+                }
+                if(DMcalc<total){
+                    DMcalc=total;
+                }
             }
             else{
-                Object datos2[]={"","","","Σ(FE-FO)²/FE",contador};
-                modelo.addRow(datos2);
-                tblChi.setModel(modelo);
-                if(contador<=16.92){
-                    labelCumple2.setVisible(true);
-                    labelCumple3.setVisible(true);
-                    labelCumple.setVisible(false);
-                    labelCumple1.setVisible(false);
-                }
-                else{
+                Object informacion2[]={"","","","","","DMcalc",String.format("%.3f", DMcalc)};
+                modelo.addRow(informacion2);
+                tblKol.setModel(modelo);
+                if(DMcalc<=0.043){
                     labelCumple.setVisible(true);
                     labelCumple1.setVisible(true);
                     labelCumple2.setVisible(false);
                     labelCumple3.setVisible(false);
                 }
+                else{
+                    labelCumple2.setVisible(true);
+                    labelCumple3.setVisible(true);
+                    labelCumple.setVisible(false);
+                    labelCumple1.setVisible(false);
+                }
             }
         }
+        
     }
 
-    private ChiCuadrado() {
+    private Kolmogorov() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -81,7 +100,7 @@ public class ChiCuadrado extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblChi = new javax.swing.JTable();
+        tblKol = new javax.swing.JTable();
         label3 = new java.awt.Label();
         label4 = new java.awt.Label();
         label5 = new java.awt.Label();
@@ -114,9 +133,9 @@ public class ChiCuadrado extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setMinimumSize(new java.awt.Dimension(600, 500));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        tblChi.setModel(new javax.swing.table.DefaultTableModel(
+        tblKol.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -127,73 +146,86 @@ public class ChiCuadrado extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblChi.setEnabled(false);
-        jScrollPane2.setViewportView(tblChi);
+        tblKol.setEnabled(false);
+        jScrollPane2.setViewportView(tblKol);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 550, 210));
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 70, 550, 210);
 
         label3.setEnabled(false);
         label3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label3.setText("Grados de libertad (gl)");
-        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, 20));
+        getContentPane().add(label3);
+        label3.setBounds(370, 310, 196, 20);
         label3.getAccessibleContext().setAccessibleDescription("");
 
         label4.setEnabled(false);
         label4.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        label4.setText("PRUEBA X²");
-        getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+        label4.setText("PRUEBA KOLMOGOROV");
+        getContentPane().add(label4);
+        label4.setBounds(50, 10, 410, 51);
 
         label5.setEnabled(false);
         label5.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        label5.setText("9");
-        getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
+        label5.setText("999");
+        getContentPane().add(label5);
+        label5.setBounds(480, 330, 34, 28);
 
         labelCumple.setEnabled(false);
         labelCumple.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        labelCumple.setText("X² calc >  X² crit");
+        labelCumple.setText("DMcalc <=  DMcrit");
         labelCumple.setVisible(false);
-        getContentPane().add(labelCumple, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
+        getContentPane().add(labelCumple);
+        labelCumple.setBounds(170, 380, 166, 28);
         labelCumple.getAccessibleContext().setAccessibleName("");
 
         label7.setEnabled(false);
         label7.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        label7.setText("16,92");
-        getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
+        label7.setText("0.043");
+        getContentPane().add(label7);
+        label7.setBounds(270, 330, 49, 28);
 
         label8.setEnabled(false);
         label8.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label8.setForeground(new java.awt.Color(51, 51, 51));
         label8.setText("Nivel de confianza (a) ");
-        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 20));
+        getContentPane().add(label8);
+        label8.setBounds(10, 310, 196, 20);
 
         label9.setEnabled(false);
         label9.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         label9.setText("0,05");
-        getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        getContentPane().add(label9);
+        label9.setBounds(70, 330, 39, 28);
 
         labelCumple1.setEnabled(false);
         labelCumple1.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
-        labelCumple1.setText("No se acepta la hipótesis de que los datos tienen distribución U(0,1)");
+        labelCumple1.setText("Se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple1.setVisible(false);
-        getContentPane().add(labelCumple1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
+        getContentPane().add(labelCumple1);
+        labelCumple1.setBounds(50, 410, 397, 24);
         labelCumple1.getAccessibleContext().setAccessibleName("");
 
         label11.setEnabled(false);
         label11.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        label11.setText("X² crit ");
-        getContentPane().add(label11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 40, 20));
+        label11.setText("DM crit ");
+        getContentPane().add(label11);
+        label11.setBounds(260, 310, 70, 20);
 
         labelCumple2.setEnabled(false);
         labelCumple2.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        labelCumple2.setText("X² calc <=  X² crit");
+        labelCumple2.setText("DMcalc >  DMcrit");
         labelCumple2.setVisible(false);
-        getContentPane().add(labelCumple2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
+        getContentPane().add(labelCumple2);
+        labelCumple2.setBounds(180, 380, 166, 28);
+        labelCumple2.getAccessibleContext().setAccessibleDescription("");
 
         labelCumple3.setEnabled(false);
         labelCumple3.setFont(new java.awt.Font("Ebrima", 2, 14)); // NOI18N
-        labelCumple3.setText("Se acepta la hipótesis de que los datos tienen distribución U(0,1)");
+        labelCumple3.setText("NO se acepta la hipótesis de que los datos tienen distribución U(0,1)");
         labelCumple3.setVisible(false);
-        getContentPane().add(labelCumple3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
+        getContentPane().add(labelCumple3);
+        labelCumple3.setBounds(30, 410, 421, 24);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,21 +247,23 @@ public class ChiCuadrado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChiCuadrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kolmogorov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChiCuadrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kolmogorov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChiCuadrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kolmogorov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChiCuadrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kolmogorov.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChiCuadrado().setVisible(true);
+                new Kolmogorov().setVisible(true);
             }
         });
     }
@@ -252,6 +286,6 @@ public class ChiCuadrado extends javax.swing.JFrame {
     public static java.awt.Label labelCumple1;
     public static java.awt.Label labelCumple2;
     public static java.awt.Label labelCumple3;
-    public static javax.swing.JTable tblChi;
+    public static javax.swing.JTable tblKol;
     // End of variables declaration//GEN-END:variables
 }

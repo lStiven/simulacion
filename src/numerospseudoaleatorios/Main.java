@@ -66,7 +66,7 @@ public class Main {
             e1 = sc.nextInt();
             if (e1 == 1) {
                 lc.mostrarRecurrencia();
-
+                
             } else {
                 if (e1 == 2) {
                     em.mostrarRecurrencias();
@@ -95,7 +95,6 @@ public class Main {
 
                     } while (cntPrueba > lc.totalRecurrencias());
                     lc.llenarFO(cntPrueba);
-
                 } else {
                     do {
                         System.out.println("\nDigite la cantidad de datos para la prueba,"
@@ -105,7 +104,7 @@ public class Main {
 
                     } while (cntPrueba > em.totalRecurrencias());
                     em.llenarFO(cntPrueba);
-
+                    em.probarCorrida((int) cntPrueba);
                 }
 
             } else {

@@ -55,15 +55,18 @@ public class PruebaDeBondad {
         }
         ChiCuadrado chi= new ChiCuadrado(tabla1, cnt);
         chi.setVisible(true);
+        Kolmogorov kol= new Kolmogorov(tabla2, cnt);
+        kol.setVisible(true);
     }
     
     public void probarCorrida(int cnt){
         double numero;
+        String dato="";
         //Validan si se estuvo o no anteriormente en crecimiento o decrecimiento
         boolean cantidadP= false, cantidadN=false;
         //Conteo correspondiente a la cantidad de corridas positivas (mayor)
         //y negativas (menor)
-        int mayor=0, menor=0;
+        int mayor=0, menor=0, suma=0;
         for(int i=0;i<cnt; i++){
                 //Se valida si se terminó el recorrido de datos
                 if(i==(cnt-1)){
@@ -72,12 +75,12 @@ public class PruebaDeBondad {
                 //Impresion de valores '-' o '+' segun corresponda
                 //Comparaciones para datos anteriores al último
                 if(i<cnt-1){
-                numero=(double)numeros.elementAt(i+1);
+                    numero=(double)numeros.elementAt(i+1);
                     if(numero<(double)numeros.elementAt(i)){
-                        System.out.print("- ");
+                        dato+="- ";
                     }
                     else{
-                        System.out.print("+ ");
+                        dato+="+ ";
                     }
                 }
                 //comparación para dato final recorrido
@@ -122,7 +125,9 @@ public class PruebaDeBondad {
                     }
                 }
         }
-        System.out.println("menor "+menor+" mayor "+mayor);
+        suma=menor+mayor;
+        Corridas corridas= new Corridas(dato,suma);
+        corridas.setVisible(true);
     }
     
     public void llenarTablaKolmogorov(double cnt) {

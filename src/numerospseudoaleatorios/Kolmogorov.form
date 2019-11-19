@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -65,7 +65,7 @@
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-    <Property name="useNullLayout" type="boolean" value="false"/>
+    <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -80,7 +80,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblChi">
+        <Component class="javax.swing.JTable" name="tblKol">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -90,7 +90,34 @@
                 <Column editable="true" title="Title 4" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -121,11 +148,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="PRUEBA X&#xb2;"/>
+        <Property name="text" type="java.lang.String" value="PRUEBA KOLMOGOROV"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="190" y="10" width="-1" height="-1"/>
+          <AbsoluteConstraints x="50" y="10" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -135,7 +162,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="9"/>
+        <Property name="text" type="java.lang.String" value="999"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -149,7 +176,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="X&#xb2; calc &gt;  X&#xb2; crit"/>
+        <Property name="text" type="java.lang.String" value="DMcalc &lt;=  DMcrit"/>
         <Property name="visible" type="boolean" value="false"/>
       </Properties>
       <AccessibilityProperties>
@@ -160,7 +187,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="230" y="380" width="-1" height="-1"/>
+          <AbsoluteConstraints x="170" y="380" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -170,7 +197,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="16,92"/>
+        <Property name="text" type="java.lang.String" value="0.043"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -215,7 +242,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="14" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="No se acepta la hip&#xf3;tesis de que los datos tienen distribuci&#xf3;n U(0,1)"/>
+        <Property name="text" type="java.lang.String" value="Se acepta la hip&#xf3;tesis de que los datos tienen distribuci&#xf3;n U(0,1)"/>
         <Property name="visible" type="boolean" value="false"/>
       </Properties>
       <AccessibilityProperties>
@@ -226,7 +253,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="110" y="410" width="-1" height="-1"/>
+          <AbsoluteConstraints x="50" y="410" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -236,11 +263,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="X&#xb2; crit "/>
+        <Property name="text" type="java.lang.String" value="DM crit "/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="270" y="310" width="40" height="20"/>
+          <AbsoluteConstraints x="260" y="310" width="70" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -250,15 +277,18 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="X&#xb2; calc &lt;=  X&#xb2; crit"/>
+        <Property name="text" type="java.lang.String" value="DMcalc &gt;  DMcrit"/>
         <Property name="visible" type="boolean" value="false"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+      </AccessibilityProperties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="220" y="380" width="-1" height="-1"/>
+          <AbsoluteConstraints x="180" y="380" width="166" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -268,7 +298,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ebrima" size="14" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Se acepta la hip&#xf3;tesis de que los datos tienen distribuci&#xf3;n U(0,1)"/>
+        <Property name="text" type="java.lang.String" value="NO se acepta la hip&#xf3;tesis de que los datos tienen distribuci&#xf3;n U(0,1)"/>
         <Property name="visible" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -276,7 +306,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="110" y="410" width="-1" height="-1"/>
+          <AbsoluteConstraints x="30" y="410" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
