@@ -6,6 +6,19 @@ package numerospseudoaleatorios;
 
 import java.util.Scanner;
 
+/************************************************************
+ *                 Universidad del Valle                    *
+ *                                                          *
+ *                Numeros pseudoaleatorios                  *
+ *                          MAIN                            *
+ *                                                          *
+ *                                                          *   
+ *        Estudiantes                       Codigos         *
+ * Luz Carime Lucumi Hernandez              1667564         *
+ * Stiven Pinzón Triana                     1667614         *
+ *                                                          *
+ ************************************************************/
+
 /**
  * @date 12/11/2019
  * @author Luz Carime Lucumi®
@@ -16,7 +29,7 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         double a, c, m, xi, cntPrueba;
-        int e1, e2, e3;
+        int e1, e2, k;
         Scanner sc = new Scanner(System.in);
 
         System.out.print("        GENERADOR NUMEROS PSEUDOALEATORIOS       \n\n");
@@ -56,6 +69,15 @@ public class Main {
             System.out.print("Semilla: ");
             xi = sc.nextDouble();
         }
+
+        //1<k<=5
+        System.out.println("Valor de k para la prueba de independencia 'poker'");
+        k = sc.nextInt();
+        while (k <= 1 || k > 5) {
+            System.out.println("El valor de k debe ser entre 1<k<=5");
+            System.out.println("Valor de k:");
+            k = sc.nextInt();
+        }
         EstandarMinimo em = new EstandarMinimo(a, m, xi);
         LinealCongruente lc = new LinealCongruente(a, c, m, xi);
 
@@ -67,7 +89,7 @@ public class Main {
             e1 = sc.nextInt();
             if (e1 == 1) {
                 lc.mostrarRecurrencia();
-                
+
             } else {
                 if (e1 == 2) {
                     em.mostrarRecurrencias();
@@ -97,6 +119,9 @@ public class Main {
                     } while (cntPrueba > lc.totalRecurrencias());
                     lc.llenarFO(cntPrueba);
                     lc.probarCorrida((int) cntPrueba);
+                    lc.probarIndependenciaPoker((int) cntPrueba, k);
+                    lc.serie(cntPrueba);
+
                 } else {
                     do {
                         System.out.println("\nDigite la cantidad de datos para la prueba,"
@@ -107,6 +132,8 @@ public class Main {
                     } while (cntPrueba > em.totalRecurrencias());
                     em.llenarFO(cntPrueba);
                     em.probarCorrida((int) cntPrueba);
+                    em.probarIndependenciaPoker((int) cntPrueba, k);
+                    em.serie(cntPrueba);
                 }
 
             } else {
@@ -121,6 +148,9 @@ public class Main {
                         } while (cntPrueba > lc.totalRecurrencias());
                         lc.llenarFO(cntPrueba);
                         lc.llenarTablaKolmogorov(cntPrueba);
+                        lc.probarCorrida((int) cntPrueba);
+                        lc.probarIndependenciaPoker((int) cntPrueba, k);
+                        lc.serie(cntPrueba);
 
                     } else {
                         do {
@@ -132,6 +162,9 @@ public class Main {
                         } while (cntPrueba > em.totalRecurrencias());
                         em.llenarFO(cntPrueba);
                         em.llenarTablaKolmogorov(cntPrueba);
+                        em.probarCorrida((int) cntPrueba);
+                        em.probarIndependenciaPoker((int) cntPrueba, k);
+                        em.serie(cntPrueba);
 
                     }
                 } else {
@@ -141,9 +174,6 @@ public class Main {
                 }
             }
         } while (e2 < 1 || e2 > 2);
-        
-        lc.probarIndependenciaPoker(6000, 5);
-        
     }
 
 }

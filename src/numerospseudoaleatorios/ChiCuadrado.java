@@ -1,15 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package numerospseudoaleatorios;
 
 import javax.swing.table.DefaultTableModel;
 
+/************************************************************
+ *                 Universidad del Valle                    *
+ *                                                          *
+ *                Numeros pseudoaleatorios                  *
+ *                      CHI CUADRADO                        *
+ *                                                          *
+ *                                                          *   
+ *        Estudiantes                       Codigos         *
+ * Luz Carime Lucumi Hernandez              1667564         *
+ * Stiven Pinzón Triana                     1667614         *
+ *                                                          *
+ ************************************************************/
+
 /**
  *
- * @author miime_000
+ * @author Luz Carime Lucumi®
+ * @author Stiven® * 
  */
 public class ChiCuadrado extends javax.swing.JFrame {
     /**
@@ -121,9 +131,10 @@ public class ChiCuadrado extends javax.swing.JFrame {
 
         label2.setText("label2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setMinimumSize(new java.awt.Dimension(600, 500));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblChi.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,7 +147,15 @@ public class ChiCuadrado extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblChi.setEnabled(false);
         jScrollPane2.setViewportView(tblChi);
 

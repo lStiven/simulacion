@@ -1,13 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package numerospseudoaleatorios;
+
+/************************************************************
+ *                 Universidad del Valle                    *
+ *                                                          *
+ *                Numeros pseudoaleatorios                  *
+ *                 INTERFAZ GENERADORES                     *
+ *                                                          *
+ *                                                          *   
+ *        Estudiantes                       Codigos         *
+ * Luz Carime Lucumi Hernandez              1667564         *
+ * Stiven Pinzón Triana                     1667614         *
+ *                                                          *
+ ************************************************************/
 
 /**
  *
- * @author miime_000
+ * @author Luz Carime Lucumi®
+ * @author Stiven®
  */
 public class Generadores extends javax.swing.JFrame {
 
@@ -53,6 +63,7 @@ public class Generadores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(590, 455));
+        setResizable(false);
         getContentPane().setLayout(null);
         getContentPane().add(TextAreaCorridas);
         TextAreaCorridas.setBounds(20, 120, 509, 228);

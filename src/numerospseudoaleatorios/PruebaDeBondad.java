@@ -5,6 +5,19 @@ package numerospseudoaleatorios;
 
 import java.util.Vector;
 
+/************************************************************
+ *                 Universidad del Valle                    *
+ *                                                          *
+ *                Numeros pseudoaleatorios                  *
+ *                   PRUEBAS DE BONDAD                      *
+ *                                                          *
+ *                                                          *   
+ *        Estudiantes                       Codigos         *
+ * Luz Carime Lucumi Hernandez              1667564         *
+ * Stiven Pinzón Triana                     1667614         *
+ *                                                          *
+ ************************************************************/
+
 /**
  * @date 14/11/2019
  * @author Luz Carime Lucumi®
@@ -12,11 +25,13 @@ import java.util.Vector;
  */
 public class PruebaDeBondad {
 
-    protected double xCal, num, gl, DMcal, DMcri;
+    protected double xCal, num, gl, DMcal, DMcri, c;
     private Vector numeros = new Vector();
     protected double[][] tabla1 = new double[10][3];
     protected double[][] tabla2 = new double[10][5];
     protected double[][] tablaPoker = new double[7][3];
+    protected double[][] tablaSerie1 = new double[5][5];
+    protected double[][] tablaSerie2 = new double[5][5];
 
     public PruebaDeBondad() {
 
@@ -193,7 +208,7 @@ public class PruebaDeBondad {
         Corrida corridas = new Corrida(dato, totalCorridas, media, varianza, z);
         corridas.setVisible(true);
     }
-    
+
     public void llenarTablaKolmogorov(double cnt) {
         /**
          * llenar el resto de la tabla
@@ -246,30 +261,38 @@ public class PruebaDeBondad {
      */
     public void probarIndependenciaPoker(int cnt, int k) {
 
+        llenarPokerFE(cnt, k);
         double numero, diferentes = 0, par = 0, trio = 0, dosPares = 0, poker = 0, full = 0, quintilla = 0;
         for (int i = 0; i < cnt; i ++) {
             System.out.println(numeros.elementAt(i));
             numero = (double) numeros.elementAt(i);
             if (asegurarQuintilla(numero, k)) {
                 quintilla ++;
+                tablaPoker[6][1] ++;
                 System.out.println("quintilla");
             } else if (asegurarFull(numero, k)) {
                 full ++;
+                tablaPoker[5][1] ++;
                 System.out.println("full");
             } else if (asegurarPoker(numero, k)) {
                 poker ++;
+                tablaPoker[4][1] ++;
                 System.out.println("poker");
             } else if (asegurarDosPares(numero, k)) {
                 dosPares ++;
+                tablaPoker[3][1] ++;
                 System.out.println("dosPares");
             } else if (asegurarTrio(numero, k)) {
                 trio ++;
+                tablaPoker[2][1] ++;
                 System.out.println("trio");
             } else if (asegurarPar(numero, k)) {
                 par ++;
+                tablaPoker[1][1] ++;
                 System.out.println("par");
             } else {
                 diferentes ++;
+                tablaPoker[0][1] ++;
                 System.out.println("diferentes");
             }
         }
@@ -280,7 +303,24 @@ public class PruebaDeBondad {
         System.out.println("Dos Pares: " + dosPares);
         System.out.println("Diferentes: " + diferentes);
         System.out.println("Par: " + par);
-        
+
+        for (int i = 0; i < 7; i ++) {
+            for (int j = 0; j < 3; j ++) {
+                if (tablaPoker[i][1] != 0) {
+                    tablaPoker[i][2] = Math.pow(tablaPoker[i][1] - tablaPoker[i][0], 2) / tablaPoker[i][0];
+                    c = c + tablaPoker[i][2];
+                }
+            }
+        }
+        for (int i = 0; i < 7; i ++) {
+            for (int j = 0; j < 3; j ++) {
+                System.out.print(tablaPoker[i][j] + "\t");
+            }
+            System.out.println("");
+        }
+
+        System.out.println("\nC: " + c);
+
     }
 
     /**
@@ -521,6 +561,58 @@ public class PruebaDeBondad {
             cont = 1;
         }
         return quintilla;
+    }
+
+    public void serie(double cnt) {
+        double num1, num2;
+        int fila = 0, columna = 0;
+        for (int i = 0; i < cnt; i ++) {
+            num1 = (double) numeros.elementAt(i);
+            num2 = (double) numeros.elementAt(i + 1);
+            //Validaciones para posicionar de filas (fila), con num1 como 
+            //primer elemento del par
+            if (num1 >= 0 && num1 < 0.2) {
+                fila = 0;
+            } else if (num1 >= 0.2 && num1 < 0.4) {
+                fila = 1;
+            } else if (num1 >= 0.4 && num1 < 0.6) {
+                fila = 2;
+            } else if (num1 >= 0.6 && num1 < 0.8) {
+                fila = 3;
+            } else if (num1 >= 0.8 && num1 < 1) {
+                fila = 4;
+            }
+            //Validaciones para posicionar columnas (columna), con num2 como 
+            //segundo elemento del par
+            if (num2 >= 0 && num2 < 0.2) {
+                columna = 0;
+            } else if (num2 >= 0.2 && num2 < 0.4) {
+                columna = 1;
+            } else if (num2 >= 0.4 && num2 < 0.6) {
+                columna = 2;
+            } else if (num2 >= 0.6 && num2 < 0.8) {
+                columna = 3;
+            } else if (num2 >= 0.8 && num2 < 1) {
+                columna = 4;
+            }
+
+            tablaSerie1[fila][columna] ++;
+            i ++;
+        }
+
+        double FE = cnt / 25;
+
+        for (int j = 0; j < 5; j ++) {
+            for (int k = 0; k < 5; k ++) {
+                tablaSerie2[j][k] = (Math.pow(FE - tablaSerie1[j][k], 2)) / FE;
+            }
+        }
+
+        SeriesTabla1 serie = new SeriesTabla1(tablaSerie1, (int) cnt);
+        serie.setVisible(true);
+
+        SeriesTabla2 serie1 = new SeriesTabla2(tablaSerie2, (int) cnt);
+        serie1.setVisible(true);
     }
 
     public int totalRecurrencias() {
